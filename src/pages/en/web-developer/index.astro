@@ -1,0 +1,194 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import ProjectDevCard from "../../../components/ProjectDevCard.astro";
+import SkillIcon from "../../../components/SkillIcon.astro";
+import { useTranslations } from "../../../i18n/translations";
+
+const t = useTranslations('en');
+---
+
+<Layout
+  title="Armando Ochoa - Web Developer"
+  description="Web Developer Portfolio - Armando Ochoa"
+  favicon="💻"
+>
+  <Header currentPath="/en/web-developer" />
+
+  <section class="home-hero">
+    <div class="home-hero__content">
+      <h1 class="heading-primary">{t('wd.hero.greeting')}</h1>
+      <div class="home-hero__info">
+        <p class="text-primary">
+          {t('wd.hero.description')}
+        </p>
+      </div>
+    </div>
+
+    <div class="home-hero__mouse-scroll-cont">
+      <div class="mouse"></div>
+    </div>
+  </section>
+
+  <section id="about" class="about sec-pad">
+    <div class="main-container">
+      <h2 class="heading heading-sec heading-sec__mb-med">
+        <span class="heading-sec__main">{t('about.title')}</span>
+        <span class="heading-sec__sub">
+          {t('about.subtitle')}
+        </span>
+      </h2>
+      <div class="about__content">
+        <div class="about__content-main">
+          <h3 class="about__content-title">{t('about.get-to-know')}</h3>
+          <div class="about__content-details">
+            <p class="about__content-details-para" set:html={t('wd.about.p1')}></p>
+            <br />
+            <p class="about__content-details-para">{t('wd.about.p2')}</p>
+            <br />
+            <p class="about__content-details-para">{t('wd.about.p3')}</p>
+          </div>
+          <a href="./#contact" class="btn btn--med btn--theme dynamicBgClr">
+            {t('about.cta')}
+          </a>
+        </div>
+        <div class="about__content-skills">
+          <h3 class="about__content-title">{t('about.skills')}</h3>
+          <div class="skills-grid">
+            <SkillIcon name="Angular" icon="simple-icons:angular" />
+            <SkillIcon name="React" icon="simple-icons:react" />
+            <SkillIcon name="Astro" icon="simple-icons:astro" />
+            <SkillIcon name="JavaScript" icon="simple-icons:javascript" />
+            <SkillIcon name="TypeScript" icon="simple-icons:typescript" />
+            <SkillIcon name="HTML5" icon="simple-icons:html5" />
+            <SkillIcon name="CSS3" icon="simple-icons:css3" />
+            <SkillIcon name="Node.js" icon="simple-icons:nodedotjs" />
+            <SkillIcon name="Java" icon="simple-icons:oracle" />
+            <SkillIcon name="Spring" icon="simple-icons:spring" />
+            <SkillIcon name="PostgreSQL" icon="simple-icons:postgresql" />
+            <SkillIcon name="Git" icon="simple-icons:git" />
+            <SkillIcon name="Tailwind" icon="simple-icons:tailwindcss" />
+            <SkillIcon name="Sass" icon="simple-icons:sass" />
+            <SkillIcon name="OpenShift" icon="simple-icons:redhatopenshift" />
+            <SkillIcon name="Docker" icon="simple-icons:docker" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects sec-pad">
+    <div class="main-container">
+      <h2 class="heading heading-sec heading-sec__mb-bg">
+        <span class="heading-sec__main">{t('projects.title')}</span>
+        <span class="heading-sec__sub">
+          {t('projects.wd.subtitle')}
+        </span>
+      </h2>
+
+      <div class="projects-grid">
+        <ProjectDevCard
+          title={t('wd.project1.title')}
+          description={t('wd.project1.description')}
+          link="https://github.com/Armando8a-dev/mi-portafolio"
+          tags={["Astro", "JavaScript", "CSS"]}
+        />
+        
+        <ProjectDevCard
+          title={t('wd.project2.title')}
+          description={t('wd.project2.description')}
+          link="https://invitation-wedding-ui.netlify.app"
+          tags={["React", "JavaScript", "Tailwind CSS"]}
+        />
+        
+        <ProjectDevCard
+          title={t('wd.project3.title')}
+          description={t('wd.project3.description')}
+          link="https://landing-fisio-ui.netlify.app"
+          tags={["Next.js", "Tailwind CSS", "shadcn/ui"]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact sec-pad dynamicBg">
+    <div class="main-container">
+      <h2 class="heading heading-sec heading-sec__mb-med">
+        <span class="heading-sec__main heading-sec__main--lt">{t('contact.title')}</span>
+        <span class="heading-sec__sub heading-sec__sub--lt">
+          {t('contact.subtitle')}
+        </span>
+      </h2>
+      <div class="contact__form-container">
+        <form
+          action="https://formspree.io/f/mblzlndn"
+          method="POST"
+          class="contact__form"
+        >
+          <div class="contact__form-field">
+            <label class="contact__form-label" for="name">{t('contact.name')}</label>
+            <input
+              required
+              placeholder={t('contact.name.placeholder')}
+              type="text"
+              class="contact__form-input"
+              name="name"
+              id="name"
+            />
+          </div>
+          <div class="contact__form-field">
+            <label class="contact__form-label" for="email">{t('contact.email')}</label>
+            <input
+              required
+              placeholder={t('contact.email.placeholder')}
+              type="text"
+              class="contact__form-input"
+              name="email"
+              id="email"
+            />
+          </div>
+          <div class="contact__form-field">
+            <label class="contact__form-label" for="message">{t('contact.message')}</label>
+            <textarea
+              required
+              cols="30"
+              rows="10"
+              class="contact__form-input"
+              placeholder={t('contact.message.placeholder')}
+              name="message"
+              id="message"></textarea>
+          </div>
+          <button type="submit" class="btn btn--theme contact__btn">
+            {t('contact.submit')}
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+  }
+</style>

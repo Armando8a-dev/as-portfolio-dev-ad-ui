@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt?: string;
+  caseStudyLink: string;
+}
+
+const { title, description, imageSrc, imageAlt = "Project Screenshot", caseStudyLink } = Astro.props;
+---
+
+<div class="projects__row">
+  <div class="projects__row-img-cont">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      class="projects__row-img"
+      loading="lazy"
+    />
+  </div>
+  <div class="projects__row-content">
+    <h3 class="projects__row-content-title">{title}</h3>
+    <p class="projects__row-content-desc">
+      {description}
+    </p>
+    <a
+      href={caseStudyLink}
+      class="btn btn--med btn--theme dynamicBgClr"
+      target="_blank"
+      >Case Study</a
+    >
+  </div>
+</div>

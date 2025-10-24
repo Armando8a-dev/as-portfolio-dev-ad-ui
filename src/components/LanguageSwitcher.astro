@@ -1,0 +1,116 @@
+---
+// Componente Selector de Idioma
+const currentPath = Astro.url.pathname;
+const currentLang = currentPath.startsWith('/en') ? 'en' : 'es';
+
+// Generar la URL alternativa
+function getAlternateUrl(path: string, targetLang: string) {
+  const segments = path.split('/').filter(Boolean);
+  
+  // Si está en inglés (/en/...) y quiere ir a español
+  if (segments[0] === 'en' && targetLang === 'es') {
+    // Remover 'en' del inicio
+    segments.shift();
+    return segments.length > 0 ? '/' + segments.join('/') : '/';
+  }
+  
+  // Si está en español y quiere ir a inglés
+  if (segments[0] !== 'en' && targetLang === 'en') {
+    // Agregar 'en' al inicio
+    return segments.length > 0 ? '/en/' + segments.join('/') : '/en';
+  }
+  
+  // Casos por defecto (no deberían ocurrir)
+  return path;
+}
+
+const toggleUrl = currentLang === 'es' 
+  ? getAlternateUrl(currentPath, 'en')
+  : getAlternateUrl(currentPath, 'es');
+---
+
+<div class="language-switcher">
+  <button 
+    class="lang-btn" 
+    data-current-lang={currentLang}
+    data-toggle-url={toggleUrl}
+    aria-label={currentLang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+  >
+    <svg class="lang-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+    <span class="lang-text">{currentLang === 'es' ? 'EN' : 'ES'}</span>
+  </button>
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    align-items: center;
+  }
+
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 2px solid #0062b9;
+    color: #0062b9;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .lang-btn:hover {
+    background: #0062b9;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 98, 185, 0.3);
+  }
+
+  .lang-btn:active {
+    transform: translateY(0);
+  }
+
+  .lang-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .lang-text {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 768px) {
+    .lang-btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+    }
+    
+    .lang-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+</style>
+
+<script>
+  // Manejar el cambio de idioma
+  document.addEventListener('DOMContentLoaded', () => {
+    const langBtn = document.querySelector('.lang-btn') as HTMLButtonElement;
+    
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        const toggleUrl = langBtn.dataset.toggleUrl;
+        if (toggleUrl) {
+          window.location.href = toggleUrl;
+        }
+      });
+    }
+  });
+</script>

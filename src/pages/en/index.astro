@@ -1,0 +1,212 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations } from "../../i18n/translations";
+
+const t = useTranslations('en');
+---
+
+<Layout
+  title="Armando Ochoa - Portfolio"
+  description="Choose between Data Analyst or Web Developer portfolio"
+  favicon="👨‍💻"
+>
+  <div class="landing-page">
+    <div class="landing-content">
+      <h1 class="landing-title">{t('landing.title')}</h1>
+      <p class="landing-subtitle">{t('landing.subtitle')}</p>
+      
+      <div class="portfolio-cards">
+        <a href="/en/data-analyst" class="portfolio-card data-analyst">
+          <div class="card-icon">📊</div>
+          <h2 class="card-title">{t('landing.da.title')}</h2>
+          <p class="card-description">{t('landing.da.description')}</p>
+          <span class="card-arrow">→</span>
+        </a>
+
+        <a href="/en/web-developer" class="portfolio-card web-developer">
+          <div class="card-icon">💻</div>
+          <h2 class="card-title">{t('landing.wd.title')}</h2>
+          <p class="card-description">{t('landing.wd.description')}</p>
+          <span class="card-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="language-switcher-landing">
+        <a href="/" class="lang-link">Español</a>
+        <span class="separator">|</span>
+        <span class="lang-link active">English</span>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .landing-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem;
+  }
+
+  .landing-content {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .landing-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .landing-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 4rem;
+  }
+
+  .portfolio-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .portfolio-cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .portfolio-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1a202c;
+  }
+
+  .card-description {
+    font-size: 1.1rem;
+    color: #718096;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-arrow {
+    font-size: 2rem;
+    color: #667eea;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-card:hover .card-arrow {
+    transform: translateX(10px);
+  }
+
+  .language-switcher-landing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .lang-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .lang-link:hover {
+    color: #ffffff;
+  }
+
+  .lang-link.active {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+    cursor: default;
+  }
+
+  .separator {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .landing-title {
+      font-size: 2.5rem;
+    }
+
+    .landing-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .card-icon {
+      font-size: 3rem;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+    }
+
+    .card-description {
+      font-size: 1rem;
+    }
+  }
+</style>
