@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Redirigir da.armandochoa.com a data-analyst
+[[redirects]]
+  from = "/"
+  to = "/data-analyst"
+  status = 301
+  force = true
+  conditions = {Host = ["da.armandochoa.com"]}
+
+# Redirigir wd.armandochoa.com a web-developer
+[[redirects]]
+  from = "/"
+  to = "/web-developer"
+  status = 301
+  force = true
+  conditions = {Host = ["wd.armandochoa.com"]}
+
+# Manejar rutas SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "18"
