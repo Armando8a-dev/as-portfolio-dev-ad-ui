@@ -2,21 +2,20 @@
   command = "npm run build"
   publish = "dist"
 
-# Redirigir da.armandochoa.com a data-analyst
+# Redirecciones basadas en el host
 [[redirects]]
   from = "/"
   to = "/data-analyst"
   status = 301
   force = true
-  conditions = {Host = ["da.armandochoa.com"]}
+  host = "da.armandochoa.com"
 
-# Redirigir wd.armandochoa.com a web-developer
 [[redirects]]
   from = "/"
   to = "/web-developer"
   status = 301
   force = true
-  conditions = {Host = ["wd.armandochoa.com"]}
+  host = "wd.armandochoa.com"
 
 # Manejar rutas SPA
 [[redirects]]

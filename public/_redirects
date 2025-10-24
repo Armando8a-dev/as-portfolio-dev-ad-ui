@@ -1,1 +1,6 @@
+# Redirecciones específicas por dominio
+https://da.armandochoa.com/  /data-analyst  301!
+https://wd.armandochoa.com/  /web-developer  301!
+
+# Manejo SPA para todas las rutas
 /*    /index.html   200
